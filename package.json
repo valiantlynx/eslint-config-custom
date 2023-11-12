@@ -1,34 +1,30 @@
 {
-  "name": "valiantlynx-turborepo",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@valiantlynx/eslint-config-custom",
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "library.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo run dev --concurrency=11",
-    "python": "turbo run python",
-    "lint": "turbo lint",
-    "clean": "turbo clean",
-    "format": "turbo format",
-    "preview": "turbo preview",
-    "package": "turbo package",
-    "release": "turbo release"
+    "build": "rm -rf dist && mkdir dist && cp library.js next.js react.js server.js svelte.js dist/",
+    "changeset": "changeset",
+    "publish:packages": "changeset publish",
+    "version:packages": "changeset version",
+    "release": "yarn build && yarn publish:packages"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
-    "@valiantlynx/tsconfig": "^0.0.21",
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.3",
-    "turbo": "latest"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "packages/scripts/python/*"
-  ],
-  "packageManager": "yarn@1.22.19",
-  "usePackagemanager": "yarn@1.22.19 or pnpm@8.6.10 or npm@8.19.4",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=7.0.0"
+    "@changesets/cli": "^2.26.2",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vercel/style-guide": "^5.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-svelte": "^2.30.0",
+    "typescript": "^5.2.2"
   }
 }
